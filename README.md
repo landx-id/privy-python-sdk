@@ -9,7 +9,9 @@ Please check [Privy Api Reference](https://console.privy.id/documentation).
 Python 3.7 or later
 
 ## Installation
-
+```python
+pip install privy-python-sdk
+```
 ## usage
 
 ### initialization
