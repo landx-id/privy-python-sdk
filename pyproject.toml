@@ -5,6 +5,9 @@ description = "Python SDK for Privy Digital Signature"
 authors = ["LandX Engineering <tech@landx.id>"]
 readme = "README.md"
 license = "MIT"
+repository = "https://github.com/landx-id/privy-python-sdk"
+keywords = ["privy", "digital Signature", "LandX"]
+
 
 [tool.poetry.dependencies]
 python = "^3.9"
