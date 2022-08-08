@@ -29,7 +29,7 @@ prv = Privy(
 )
 ```
 ### Privy User Registration
-Args:
+**Args**:
 - `email` *string* - User's email
 - `phone` *string* - User's phone (e.g: 08233324223)
 - `selfie` *string* - Close up photo of registrant (.png, .jpg, or .jpeg)
@@ -38,7 +38,7 @@ Args:
 - `name` *string* - name of the user
 - `date_of_birth` *string* - date of birth of the user (1983-01-02)
 
-Returns: <br />
+**Returns**: <br />
     Return reference https://console.privy.id/documentation#registration
 
 ```python
@@ -56,10 +56,10 @@ prv.register_user(
 ### Get User's Registration Status
 Check registration status of user.
 
-Args:
+**Args**:
 - `token` *string* - User's token from Registration API
 
-Returns: <br />
+**Returns**: <br />
     Return reference https://console.privy.id/documentation#check-registration-status
 
 ```python
@@ -67,13 +67,13 @@ prv.register_status(token="b3lkdfaoir0294058klkadfk45qeorlkldakfgh")
 ```
 
 ### Upload Document
-Args:
+**Args**:
 - `title` *string* - title of the document
 - `document_path` *string* - path of the document
 - `recipient` *string* - recipient of the document
 - `owner` *string* - owner of the document
 
-Returns: <br />
+**Returns**: <br />
 Return reference https://console.privy.id/documentation#upload-document
 
 ```python
@@ -85,10 +85,10 @@ prv.upload_document(
 ```
 
 ### Get Document Status
-Args:
+**Args**:
 - `doc_Token` *string* - Document's token
 
-Returns: <br />
+**Returns**: <br />
 Return reference https://console.privy.id/documentation#check-document-status
 ```python
 prv.document_status(
@@ -98,4 +98,4 @@ prv.document_status(
 
 ## License
 
-privy-python-sdk is released under the MIT License. Check License file for detail.
+**privy-python-sdk** is released under the MIT License. Check License file for detail.
