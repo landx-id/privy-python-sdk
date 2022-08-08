@@ -1,4 +1,4 @@
-# privy-python-sdk
+# Privy Python SDK
 Python SDK for Privy Digital Signature https://console.privy.id/
 
 
@@ -12,9 +12,10 @@ Python 3.7 or later
 ```python
 pip install privy-python-sdk
 ```
-## usage
+## Usage
 
-### initialization
+### Initialization
+
 ```python
 from privy_python_sdk.privy import Privy
 
@@ -29,15 +30,15 @@ prv = Privy(
 ```
 ### Privy User Registration
 Args:
-- email: (String) email of the user 
-- phone: (String) phone of the user (ex format: 08233324223)
-- selfie: (String) file path of selfie of the user, Face close up photo of Registrant on image format (.png / .jpg / .jpeg)
-- ktp: (String) file path of ktp of the user, User's Identity card on image format (.png / .jpg / .jpeg)
-- nik: (String) NIK must be 16 digits and the sixteenth digit can't be 0
-- name: (String) name of the user
-- date_of_birth: (String) date of birth of the user (1983-01-02)
+- `email` *string* - User's email
+- `phone` *string* - User's phone (e.g: 08233324223)
+- `selfie` *string* - Close up photo of registrant (.png, .jpg, or .jpeg)
+- `ktp` *string* - KTP Photo of the user (.png, .jpg, or .jpeg)
+- `nik` *string* - NIK must be 16 digits and the sixteenth digit can't be 0
+- `name` *string* - name of the user
+- `date_of_birth` *string* - date of birth of the user (1983-01-02)
 
-Returns:
+Returns: <br />
     Return reference https://console.privy.id/documentation#registration
 
 ```python
@@ -52,13 +53,13 @@ prv.register_user(
 )
 ```
 
-### get user registration status
+### Get User's Registration Status
 Check registration status of user.
 
 Args:
-- token: User's token from Registration API
+- `token` *string* - User's token from Registration API
 
-Returns:
+Returns: <br />
     Return reference https://console.privy.id/documentation#check-registration-status
 
 ```python
@@ -67,13 +68,14 @@ prv.register_status(token="b3lkdfaoir0294058klkadfk45qeorlkldakfgh")
 
 ### Upload Document
 Args:
-- title: title of the document
-- document_path: path of the document
-- recipient: recipient of the document
-- owner: owner of the document
+- `title` *string* - title of the document
+- `document_path` *string* - path of the document
+- `recipient` *string* - recipient of the document
+- `owner` *string* - owner of the document
 
-Returns:
+Returns: <br />
 Return reference https://console.privy.id/documentation#upload-document
+
 ```python
 prv.upload_document(
         document_path="/upload/document.jgp",
@@ -84,12 +86,16 @@ prv.upload_document(
 
 ### Get Document Status
 Args:
-- doc_Token: (String) token of the document
+- `doc_Token` *string* - Document's token
 
-Returns:
+Returns: <br />
 Return reference https://console.privy.id/documentation#check-document-status
 ```python
 prv.document_status(
         doc_token="b3lkdfaoir0294058klkadfk45qeorlkldakfgh"
     )
 ```
+
+## License
+
+privy-python-sdk is released under the MIT License. Check License file for detail.
