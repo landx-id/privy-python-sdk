@@ -1,7 +1,7 @@
 from privy_python_sdk.privy import Privy
 
 def register_user():
-    prv = Privy(privy_enterprise_token="key-123",privy_merchant_key="xxxxxxxxxxxxx",production=False,privy_id='TE1111')
+    prv = Privy(privy_enterprise_token="key-123",privy_merchant_key="xxxxxxxxxxxxx",privy_password="bar",privy_username="foo",production=False,privy_id='TE1111')
     
     prv.register_user(
         date_of_birth="1983-01-02",
@@ -14,7 +14,7 @@ def register_user():
     )
 
 def reregister(type):
-    prv = Privy(privy_enterprise_token="key-123",privy_merchant_key="xxxxxxxxxxxxx",production=False,privy_id='TE1111')
+    prv = Privy(privy_enterprise_token="key-123",privy_merchant_key="xxxxxxxxxxxxx",privy_password="bar",privy_username="foo",production=False,privy_id='TE1111')
     
     if type == 'ktp':
         return prv.reregister_ktp(
@@ -38,7 +38,7 @@ def reregister(type):
 
 
 def check_user_status():
-    prv = Privy(privy_enterprise_token="key-123",privy_merchant_key="xxxxxxxxxxxxx",production=False,privy_id='TE1111')
+    prv = Privy(privy_enterprise_token="key-123",privy_merchant_key="xxxxxxxxxxxxx",privy_password="bar",privy_username="foo",production=False,privy_id='TE1111')
     
     prv.register_status(
         token="b3lkdfaoir0294058klkadfk45qeorlkldakfgh"

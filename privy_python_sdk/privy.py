@@ -1,15 +1,18 @@
 """unleash Get Feature Flag."""
 
 from requests import post
+from requests.auth import HTTPBasicAuth
 from json import dumps
 
 
 class Privy:
-    def __init__(self, privy_id=(str),privy_merchant_key=(str),privy_enterprise_token=(str),production=(bool)):
+    def __init__(self, privy_id=(str), privy_username=(str), privy_password=(str),privy_merchant_key=(str),privy_enterprise_token=(str),production=(bool)):
+        if privy_username is None:
+            raise ValueError("privyid_username must be provided")
+        if privy_password is None:
+            raise ValueError("privyid_password must be provided")
         if privy_merchant_key is None:
             raise ValueError("privyid_merchant_key must be provided")
-        if privy_id is None:
-            raise ValueError("privy_id must be provided")
         if privy_enterprise_token is None:
             raise ValueError("privy_id_enterprise_token must be provided")
         if production is None:
@@ -17,6 +20,8 @@ class Privy:
 
         self.privy_base_url = 'https://core.privy.id/v3/merchant' if production else 'https://stg-core.privy.id/v3/merchant'
         self.privy_id = privy_id
+        self.privy_username = privy_username
+        self.privy_password = privy_password
         self.privy_merchant_key = privy_merchant_key
         self.privy_enterprise_token = privy_enterprise_token
 
@@ -39,6 +44,7 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/registration',
+            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'email': email,
@@ -69,6 +75,7 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/registration/status',
+            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'token': token,
@@ -91,6 +98,7 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/document/upload',
+            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'documentTitle': title,
@@ -122,6 +130,7 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/document/status/:docToken',
+            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'token': doc_token,
@@ -146,6 +155,7 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/reregister/:ktp',
+            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
             files={
                 'ktp': open(ktp,'rb')
@@ -169,6 +179,7 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/reregister/:selfie',
+            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
             files={
                 'ktp': open(selfie,'rb')
@@ -194,6 +205,7 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/reregister/:file-support',
+            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
             data={
                 'fileSupport[][category]': file_support_category
