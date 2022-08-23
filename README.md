@@ -45,8 +45,8 @@ prv = Privy(
 prv.register_user(
         date_of_birth="1983-01-02",
         email="foo@bar.com",
-        ktp="/upload/ktp.jgp",
-        selfie="/upload/selfie.jgp",
+        ktp="/upload/ktp.jpg",
+        selfie="/upload/selfie.jpg",
         name="foo bar",
         nik="1234567891234567",
         phone="08233324223"
@@ -78,7 +78,7 @@ Return reference https://console.privy.id/documentation#upload-document
 
 ```python
 prv.upload_document(
-        document_path="/upload/document.jgp",
+        document_path="/upload/document.jpg",
         title="foo bar",
         recipient="LA1234"
     )
@@ -96,6 +96,33 @@ prv.document_status(
     )
 ```
 
+### update data
+for invalid or rejected user who wants to update their data and reregister
+
+1. update data ktp
+    ```python
+    prv.reregister_ktp(
+            ktp="/upload/ktp.jpg",
+            user_token="b3lkdfaoir0294058klkadfk45qeorlkldakfgh"
+        )
+    ```
+
+2. update data selfie
+    ```python
+    prv.reregister_selfie(
+            selfie="/upload/selfie.jpg",
+            user_token="b3lkdfaoir0294058klkadfk45qeorlkldakfgh"
+        )
+    ```
+
+3. update data file support
+    ```python
+    prv.reregister_file_support(
+            file_support="/upload/KK.jpg",
+            file_support_category="KK",
+            user_token="b3lkdfaoir0294058klkadfk45qeorlkldakfgh"
+        )
+    ```
 ## License
 
 **privy-python-sdk** is released under the MIT License. Check License file for detail.

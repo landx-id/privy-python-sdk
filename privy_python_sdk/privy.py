@@ -1,27 +1,22 @@
 """unleash Get Feature Flag."""
 
 from requests import post
-from requests.auth import HTTPBasicAuth
 from json import dumps
 
 
 class Privy:
-    def __init__(self, privy_id=(str), privy_username=(str), privy_password=(str),privy_merchant_key=(str),privy_enterprise_token=(str),production=(bool)):
-        if privy_username is None:
-            raise ValueError("privyid_username must be provided")
-        if privy_password is None:
-            raise ValueError("privyid_password must be provided")
+    def __init__(self, privy_id=(str),privy_merchant_key=(str),privy_enterprise_token=(str),production=(bool)):
         if privy_merchant_key is None:
             raise ValueError("privyid_merchant_key must be provided")
+        if privy_id is None:
+            raise ValueError("privy_id must be provided")
         if privy_enterprise_token is None:
             raise ValueError("privy_id_enterprise_token must be provided")
         if production is None:
             raise ValueError("production status must be provided")
 
-        self.privy_base_url = '	https://core.privy.id/v3/merchant' if production else 'https://stg-core.privy.id/v3/merchant'
+        self.privy_base_url = 'https://core.privy.id/v3/merchant' if production else 'https://stg-core.privy.id/v3/merchant'
         self.privy_id = privy_id
-        self.privy_username = privy_username
-        self.privy_password = privy_password
         self.privy_merchant_key = privy_merchant_key
         self.privy_enterprise_token = privy_enterprise_token
 
@@ -44,7 +39,6 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/registration',
-            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'email': email,
@@ -75,7 +69,6 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/registration/status',
-            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'token': token,
@@ -98,7 +91,6 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/document/upload',
-            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'documentTitle': title,
@@ -130,7 +122,6 @@ class Privy:
         """
         response = post(
             f'{self.privy_base_url}/document/status/:docToken',
-            auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'token': doc_token,
@@ -139,3 +130,77 @@ class Privy:
         response_json = response.json()
         return response_json
 
+    
+    def reregister_ktp(self, ktp=(str), user_token=(str)):
+        """re-registration ktp if user is invalid or rejected.
+
+        Args:
+            ktp: (String) ktp file directory
+
+        Returns:
+            code : HTTP Status Code
+            data : 
+            errors : Message of error
+            message : Message of response
+
+        """
+        response = post(
+            f'{self.privy_base_url}/reregister/:ktp',
+            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
+            files={
+                'ktp': open(ktp,'rb')
+            }
+        )
+        response_json = response.json()
+        return response_json
+    
+    def reregister_selfie(self, selfie=(str), user_token=(str)):
+        """re-registration selfie if user is invalid or rejected.
+
+        Args:
+            selfie: (String) selfie file directory
+
+        Returns:
+            code : HTTP Status Code
+            data : 
+            errors : Message of error
+            message : Message of response
+
+        """
+        response = post(
+            f'{self.privy_base_url}/reregister/:selfie',
+            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
+            files={
+                'ktp': open(selfie,'rb')
+            }
+        )
+        response_json = response.json()
+        return response_json
+
+    def reregister_file_support(self, file_support=(str),file_support_category=(str), user_token=(str)):
+        """re-registration file support if user is invalid or rejected.
+
+        Args:
+            file_support: (String) file support dir
+            file_support_category: (String) category of requested file support
+            user_token: (String) user token
+
+        Returns:
+            code : HTTP Status Code
+            data : 
+            errors : Message of error
+            message : Message of response
+
+        """
+        response = post(
+            f'{self.privy_base_url}/reregister/:file-support',
+            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
+            data={
+                'fileSupport[][category]': file_support_category
+            },
+            files={
+                'fileSupport[][attachment]': open(file_support,'rb')
+            }
+        )
+        response_json = response.json()
+        return response_json
