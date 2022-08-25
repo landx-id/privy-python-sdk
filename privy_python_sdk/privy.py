@@ -161,8 +161,8 @@ class Privy:
                 'ktp': open(ktp,'rb')
             }
         )
-        response_json = response.json()
-        return response_json
+        # response_json = response.json()
+        return response
     
     def reregister_selfie(self, selfie=(str), user_token=(str)):
         """re-registration selfie if user is invalid or rejected.
