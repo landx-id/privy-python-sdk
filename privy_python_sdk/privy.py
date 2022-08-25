@@ -18,7 +18,7 @@ class Privy:
         if production is None:
             raise ValueError("production status must be provided")
 
-        self.privy_base_url = 'https://core.privy.id/v3/merchant' if production else 'https://stg-core.privy.id/v3/merchant'
+        self.privy_base_url = 'https://core.privy.id/v3' if production else 'https://stg-core.privy.id/v3'
         self.privy_id = privy_id
         self.privy_username = privy_username
         self.privy_password = privy_password
@@ -43,7 +43,7 @@ class Privy:
 
         """
         response = post(
-            f'{self.privy_base_url}/registration',
+            f'{self.privy_base_url}/merchant/registration',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
@@ -74,7 +74,7 @@ class Privy:
 
         """
         response = post(
-            f'{self.privy_base_url}/registration/status',
+            f'{self.privy_base_url}/merchant/registration/status',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
@@ -97,7 +97,7 @@ class Privy:
             Return reference https://console.privy.id/documentation#upload-document
         """
         response = post(
-            f'{self.privy_base_url}/document/upload',
+            f'{self.privy_base_url}/merchant/document/upload',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
@@ -129,7 +129,7 @@ class Privy:
 
         """
         response = post(
-            f'{self.privy_base_url}/document/status/docToken',
+            f'{self.privy_base_url}/merchant/document/status/docToken',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
@@ -154,7 +154,7 @@ class Privy:
 
         """
         response = post(
-            f'{self.privy_base_url}/reregister/ktp',
+            f'{self.privy_base_url}/user/merchant/reregister/ktp',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
             files={
@@ -178,7 +178,7 @@ class Privy:
 
         """
         response = post(
-            f'{self.privy_base_url}/reregister/selfie',
+            f'{self.privy_base_url}/user/merchant/reregister/selfie',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
             files={
@@ -204,7 +204,7 @@ class Privy:
 
         """
         response = post(
-            f'{self.privy_base_url}/reregister/file-support',
+            f'{self.privy_base_url}/user/merchant/reregister/file-support',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
             headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
             data={
