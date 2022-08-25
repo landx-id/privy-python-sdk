@@ -156,7 +156,7 @@ class Privy:
         response = post(
             f'{self.privy_base_url}/user/merchant/reregister/ktp',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
-            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
+            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'multipart/form-data'},
             files={
                 'ktp': open(ktp,'rb')
             }
@@ -180,7 +180,7 @@ class Privy:
         response = post(
             f'{self.privy_base_url}/user/merchant/reregister/selfie',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
-            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
+            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'multipart/form-data'},
             files={
                 'ktp': open(selfie,'rb')
             }
@@ -206,7 +206,7 @@ class Privy:
         response = post(
             f'{self.privy_base_url}/user/merchant/reregister/file-support',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
-            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'form-data'},
+            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'Content-Type':'multipart/form-data'},
             data={
                 'fileSupport[][category]': file_support_category
             },
