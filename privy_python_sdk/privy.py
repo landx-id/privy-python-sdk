@@ -161,8 +161,8 @@ class Privy:
                 'ktp': open(ktp,'rb')
             }
         )
-        # response_json = response.json()
-        return response
+        response_json = response.json()
+        return response_json
     
     def reregister_selfie(self, selfie=(str), user_token=(str)):
         """re-registration selfie if user is invalid or rejected.
@@ -180,7 +180,7 @@ class Privy:
         response = post(
             f'{self.privy_base_url}/user/merchant/reregister/selfie',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
-            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'content-type':'multipart/form-data'},
+            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token},
             files={
                 'selfie': open(selfie,'rb')
             }
@@ -206,7 +206,7 @@ class Privy:
         response = post(
             f'{self.privy_base_url}/user/merchant/reregister/file-support',
             auth=HTTPBasicAuth(username=self.privy_username,password=self.privy_password),
-            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token,'content-type':'multipart/form-data'},
+            headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token},
             data={
                 'fileSupport[][category]': file_support_category
             },
