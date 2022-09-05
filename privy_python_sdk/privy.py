@@ -58,7 +58,9 @@ class Privy:
             files={
                 'selfie': open(selfie, 'rb'),
                 'ktp': open(ktp,'rb')
-                }
+                },
+            timeout=60
+
         )
         response_json = response.json()
         return response_json
@@ -79,7 +81,8 @@ class Privy:
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'token': token,
-            }
+            },
+            timeout=60,
         )
         response_json = response.json()
         return response_json
@@ -112,7 +115,9 @@ class Privy:
                     'enterpriseToken': self.privy_enterprise_token
                 })
             },
-            files={'document': open(document_path, 'rb')}
+            files={'document': open(document_path, 'rb')},
+            timeout=60
+
         )
 
         response_json = response.json()
@@ -134,7 +139,8 @@ class Privy:
             headers={'Merchant-Key': self.privy_merchant_key},
             data={
                 'token': doc_token,
-            }
+            },
+            timeout=60
         )
         response_json = response.json()
         return response_json
@@ -159,7 +165,8 @@ class Privy:
             headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token},
             files={
                 'ktp': open(ktp,'rb')
-            }
+            },
+            timeout=60
         )
         response_json = response.json()
         return response_json
@@ -183,7 +190,8 @@ class Privy:
             headers={'Merchant-Key': self.privy_merchant_key,'Token': user_token},
             files={
                 'selfie': open(selfie,'rb')
-            }
+            },
+            timeout=60
         )
         response_json = response.json()
         return response_json
@@ -212,7 +220,9 @@ class Privy:
             },
             files={
                 'fileSupport[][attachment]': open(file_support,'rb')
-            }
+            },
+            timeout=60
+
         )
         response_json = response.json()
         return response_json
