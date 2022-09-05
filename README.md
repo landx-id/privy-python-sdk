@@ -96,10 +96,10 @@ prv.document_status(
     )
 ```
 
-### update data
+### Update Data
 for invalid or rejected user who wants to update their data and reregister
 
-1. update data ktp
+1. Update Data KTP
     ```python
     prv.reregister_ktp(
             ktp="/upload/ktp.jpg",
@@ -107,7 +107,7 @@ for invalid or rejected user who wants to update their data and reregister
         )
     ```
 
-2. update data selfie
+2. Update Data Selfie
     ```python
     prv.reregister_selfie(
             selfie="/upload/selfie.jpg",
@@ -115,7 +115,7 @@ for invalid or rejected user who wants to update their data and reregister
         )
     ```
 
-3. update data file support
+3. Update Data File Support
     ```python
     prv.reregister_file_support(
             file_support="/upload/KK.jpg",
