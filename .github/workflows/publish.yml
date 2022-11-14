@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - "v*"
+    branches:
+      - "main"
 
 jobs:
   publish-to-pypi:
@@ -19,7 +21,7 @@ jobs:
 
       - name: "Build and publish"
         run: |
-          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+          curl -sSL https://install.python-poetry.org | python3 - --preview
           source ~/.poetry/env
           poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
           poetry version ${GITHUB_REF##*/}
