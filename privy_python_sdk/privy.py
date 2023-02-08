@@ -18,7 +18,7 @@ class Privy:
         if production is None:
             raise ValueError("production status must be provided")
 
-        self.privy_base_url = 'https://core.privy.id/v3' if production else 'https://stg-core.privy.id/v3'
+        self.privy_base_url = 'https://core.privy.id/v3' if production else 'https://api-sandbox.privy.id/v3'
         self.privy_id = privy_id
         self.privy_username = privy_username
         self.privy_password = privy_password
